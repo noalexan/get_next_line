@@ -6,47 +6,35 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 14:42:18 by noalexan          #+#    #+#             */
-/*   Updated: 2022/03/31 15:39:39 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/04/01 11:44:25 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	readFile(int fd)
-{
-	unsigned char	buffer[10];
-	int				bytes_read;
-	int				k;
-
-	k = 0;
-	bytes_read = 0;
-	while (bytes_read != 0)
-	{
-		bytes_read = read(fd, buffer, 10);
-		k++;
-		for(int i = 0; i < 10; i++)
-			printf("%c", buffer[i]);
-	}
-}
-
 char	*get_next_line(int fd)
 {
-	static int	index = 0;
+	int		ret;
+	char	*gnl;
 
-	index++;
-	printf("%d%d", index, fd);
-	return ("c");
+	ret = 1;
+	gnl = malloc(BUFFER_SIZE * sizeof(char));
+	ret = read(fd, gnl, BUFFER_SIZE);
+	gnl[ret] = '\0';
+	return (ft_strdup(gnl));
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	int	fd;
 
-	fd = open("file.txt", O_RDONLY);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	readFile(fd);
-	close(fd);
+	if (argc > 1)
+	{
+		fd = open(argv[1], O_RDONLY);
+		printf("%s\n", get_next_line(fd));
+		close(fd);
+	}
+	else
+		printf("Veuillez entrer le nom du fichier en argument.\n");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 14:42:51 by noalexan          #+#    #+#             */
-/*   Updated: 2022/03/31 15:31:29 by noalexan         ###   ########.fr       */
+/*   Updated: 2022/04/01 11:41:43 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,7 @@
 # include <stdlib.h>
 
 char	*get_next_line(int fd);
+char	*ft_strcpy(char *src, char *copy);
+char	*ft_strdup(char *src);
 
 #endif
