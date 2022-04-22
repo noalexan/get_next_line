@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: noalexan <noalexan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/19 12:08:33 by noalexan          #+#    #+#             */
-/*   Updated: 2022/04/22 10:05:22 by noalexan         ###   ########.fr       */
+/*   Created: 2022/04/19 12:09:14 by noalexan          #+#    #+#             */
+/*   Updated: 2022/04/22 10:51:31 by noalexan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
-char	*get_next_line(int fd)
-{
-	static char	*save;
-	char		buffer[BUFFER_SIZE + 1];
-	int			bytes;
+# include <stdlib.h>
+# include <unistd.h>
+# include <limits.h>
 
-	bytes = read(fd, buffer, BUFFER_SIZE);
-	while (bytes > 0)
-	{
-		buffer[bytes] = '\0';
-		add_buffer(&save, buffer);
-		if (there_is_a_end_of_line(save) != -1)
-			return (get_line(&save));
-		bytes = read(fd, buffer, BUFFER_SIZE);
-	}
-	return (get_line(&save));
-}
+char	*get_next_line(int fd);
+int		ft_strlen(const char *string);
+int		there_is_a_end_of_line(char *save);
+void	add_buffer(char **save, char *buffer);
+char	*get_line(char **save);
+
+#endif
